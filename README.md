@@ -4,7 +4,7 @@ I created this script for having much more efficiency on the Diablo III game for
 
 As you can see, it's quite simple written, in AHK.
 
-!Note: some parts of the script will only work on FullHD resolution with 16:9 screen ration (1920px x 1080px)
+!Note: some parts of the script will only work on FullHD resolution with 16:9 screen ratio (1920px x 1080px)
 
 So let's see the scripts made in here:
 
