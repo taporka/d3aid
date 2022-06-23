@@ -1,8 +1,4 @@
-; Alt + Q - Leave game and rejoin (7.5s delay on rejoin for loading screen)
-; Shift + MiddleMouseButton - Repair and Salvage at Forge
-; Alt + Click - Salvage item you clicked in your inventory at Forge
-; Shift + C - Open inventory with Crafting materials scrolled down all the way so you can see your GR keys 
-
+;Diablo III aid scripts for FullHD (1920 x 1080) resolution (Windows PC only)
 ;Click, 900 380 0 ;OK Button position
 ;Click, 500 650 0  ;Repair tab
 ;Click, 300 600 0  ;Repair button
@@ -23,14 +19,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 #IfWinActive, Diablo III
-
 cps := 20
 wait := 1000 // cps
+return
 
-return ; End of auto-execute
-
+;Win+F2 to toggle Left click while holding Left mouse button
 #IfWinActive, Diablo III
-
 #F2::Hotkey LButton, Toggle
 
 ~LButton::
@@ -42,7 +36,7 @@ return ; End of auto-execute
 
 return
 
-
+;Win+F3 toggle to Right click while holding Right mouse button
 #IfWinActive, Diablo III
 #F3::Hotkey RButton, Toggle
 
@@ -54,6 +48,7 @@ return
 	}
 return
 
+;Win+F4 toggle to Mouse4 (the back command on browsers) while holding Mouse4 button
 #IfWinActive, Diablo III
 #F4::Hotkey XButton1, Toggle
 
@@ -68,45 +63,41 @@ return
 	}
 return
 
-
-
-
 #IfWinActive, Diablo III
 
+;Alt+A - Only for showing cursor position
 !A::
 	MouseGetPos x, y
 	MsgBox, Cursor is at %x% %y%
 	return
-
+;Ctrl+R - Reload script
 ^R::
 	reload
 	return
-
+;Alt+Q - Reload game (Game Menu->Leave Game->Wait 6 sec->Start Game) 
 !Q::
-	Send {Escape}
-	Mousemove, 300, 500, 0.1
-	Send {Click}
-	Sleep,6000
-	Send {Click}
+	Send {Space}
+	Click, 1265 1028
+	Click, 300 500
+	Sleep, 6000
+	Click, 300 500
 	return
 
+;Alt+MiddleMouseButton - Repair and salvage common, magic and rare items when Blacksmith window open
 +MButton::
 	MouseGetPos x, y
-	Click, 500 650 	;Repair tab
-	Click, 300 600 	;Repair button
-	Click, 500 480 	;Salvage tab
-	Click, 250 300 	;Common button
-	Send {Enter}
-	Send {Enter}
-	Click, 310 300 	;Magic button
-	Send {Enter}
-	Send {Enter}
-	Click, 390 300 	;Rare button
-	Send {Enter}
-	Send {Enter}
+	Click, 500 650 	
+	Click, 300 600 	
+	Click, 500 480 	
+	Click, 250 300 	
+	Click, 900 380  
+	Click, 310 300 	
+	Click, 900 380
+	Click, 390 300 	
+	Click, 900 380
 	Click, %x% %y% 0
 	return
-	
+;Alt+M - Open map to Bridge of Korsikk	
 !M::
 	Send {TAB}
 	Sleep, 150
@@ -118,33 +109,23 @@ return
 	Sleep, 150
 	Click, 801 460 0
 	return
-!B::
-	Send {Escape}
-	Send {Escape}
-	Mousemove, 300, 500, 0.1
-	Send {Click}
-	Sleep,9000
-	Send {Click}
-	return
-
+;Alt+LeftClick - Salvage items with confirmation clicked
 !LButton::
 	MouseGetPos x, y
 	Click, 500 480 
-	Click, 190 300 
+	Click, 190 300
+	Sleep, 50 
 	Click, %x% %y%
-	Send {Enter}
-	Send {Enter}
 	Sleep, 50
-	Click
-	Click, %x% %y% 0
+	Click, 900 380
+	Sleep, 50
+	Click, %x% %y% Right
 	return
-	
-+C::
+;Alt+C - Open Inventory with Crafting Materials scrolled to GR Keys	
+!C::
+	Send {Space}
+	Sleep, 50
 	Send {C}
 	Click, 1450 880
 	Click, 1350 820
 	return
-	
-
-
-
